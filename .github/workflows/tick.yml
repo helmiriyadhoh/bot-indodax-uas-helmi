@@ -11,10 +11,19 @@ jobs:
     steps:
       - name: Call Vercel tick endpoint
         run: |
-          curl -fsS -X POST "$TICK_URL" \
+          set +e
+          RESPONSE=$(curl -sS -X POST "$TICK_URL" \
             -H "x-cron-secret: $CRON_SECRET" \
             -H "Content-Type: application/json" \
-            -d '{}'
+            -d '{}' \
+            -w '
+HTTP_STATUS:%{http_code}')
+          STATUS=$(echo "$RESPONSE" | tail -n 1 | sed 's/HTTP_STATUS://')
+          echo "$RESPONSE"
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            exit 1
+          fi
         env:
           TICK_URL: ${{ secrets.TICK_URL }}
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
