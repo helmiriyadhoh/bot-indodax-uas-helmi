@@ -41,3 +41,4 @@ _(isi: hash commit, waktu commit, waktu mulai forward test, dan alasan bila kura
 5. `python scripts/buat_dashboard.py --nama "Helmi Riyadhoh" --nim 25110200005 --kelas Trad1` -> `out/UAS_<NIM>_<Nama>.html` (offline, mandiri, gaya dashboard UTS). Salin ke `public/index.html` lalu commit dan push untuk halaman Vercel.
 6. `python scripts/buat_refleksi.py` -> `refleksi_draft.md`; lengkapi bagian "Penjelasan" dengan kata-katamu sendiri.
 7. Kumpulkan ZIP (termasuk folder `.git`), link Vercel, link repositori. Pastikan tidak ada `.env`.
+Deploy ulang
